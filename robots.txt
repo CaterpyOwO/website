@@ -1,0 +1,29 @@
+# Gooooooooogle
+User-agent: Googlebot
+Allow: /
+Allow: /*
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*
+
+# Yaaaaaaaaaahoooo
+User-agent: Slurp
+Allow: /
+Allow: /*
+
+# Bing stuff
+Allow: /
+Allow: /*
+
+# Social stuffs
+User-agent: Twitterbot
+Allow: /
+Allow: /*
+
+# hahah fuck you 
+User-agent: FacebookExternalHit
+Disallow: /*
+
+Crawl-delay: 1
+Sitemap: https://caterpy.xyz/sitemap.xml

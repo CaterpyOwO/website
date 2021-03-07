@@ -1,0 +1,21 @@
+{
+    "short_name": "Caterpy.xyz",
+    "name": "PWA - Caterpy.xyz",
+    "icons": [
+      {
+        "src": "/assets/icons/pwat-icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/assets/icons/pwat-icon-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "theme_color": "#ffffff"
+  }
