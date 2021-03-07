@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+.google button, input[type=submit] {
+    margin: 10px 0;
+    color: #444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+    cursor: pointer;
+}
+
+.google button:hover, input[type=submit]:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333;
+    background: #F7F7F7;
+}
+
+.google button:active, input[type=submit]:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
+
+.slider-div {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.slider-div input[type=range] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.slider-div input[type=checkbox] {
+    margin: 5px;
+}
+
+.slider-div label {
+    margin-top: 0;
+    display: inline-block;
+}
+
+.slider-div .google {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.slider-div .google button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.terminal {
+    background: #000000;
+    color: #ddd;
+    width: fit-content;
+    margin: 50px auto;
+}
+
+.terminal h1, .terminal h2, .terminal h3, .terminal h4, .terminal h5 {
+    text-align: center;
+}
+
+.error h1, .error h2, .error h3, .error h4 {
+    padding: 0;
+    font-family: Raleway;
+    left: 0;
+    line-height: 200px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+
+}
+
+.terminal a {
+    text-decoration: none;
+    color: #1111ff;
+}
+
+.terminal p, .cursor {
+    font-size: 15px;
+}
+
+.terminal #cursor {
+  font-size: 15px;
+}
+
+.cursor { 
+  position: relative;
+  display: inline-block;
+}
+
+.terminal .cursor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -15px;
+  display: inline-block;
+  background-color: #606060;
+  vertical-align: top;
+  width: 9px;
+  height: 19px;
+  -webkit-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
