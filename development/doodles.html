@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodles</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.min.css">
+    <style type="text/css">
+        @import url('https://cdn.rawgit.com/h-ibaldo/Raleway_Fixed_Numerals/master/css/rawline.css');
+        @import url("https://caterpy.xyz/assets/fonts/Free_Sans/stylesheet.css");
+        .material-icons.md-18{font-size:18px}.material-icons.md-24{font-size:24px}.material-icons.md-36{font-size:36px}.material-icons.md-48{font-size:48px}body{margin:12px;overflow-x:hidden}body>*{margin-block-start:1.1em;margin-block-end:1.1em;margin-inline-start:0;margin-inline-end:0}code{border-radius:2px;padding:5px;color:#242729;background:#eff0f1;font-size:.7rem}
+    </style>
+    <script type="text/javascript">
+        let Toast = (div) => {
+            div = document.querySelector(div);
+
+            div.classList.toggle("visible");
+            setTimeout(() => div.classList.toggle("visible"), 3000);
+        }
+    </script>
+</head>
+<body>
+    <div class="date">
+        <span class="inner">
+            jun 15
+        </span>
+    </div>
+    <button class="slick">Hello</button>
+    <div class="button-bg">
+        <button>
+            <span>A button with gradient</span>
+        </button>
+    </div>
+    <button class="outlined">Submit</button>
+    <hr class="gradient">
+    <p class="article">
+        This is a paragraph which makes use of the <code>first-letter</code>
+        CSS pseudo-element. As you can see that lets me make 
+        the first letter of each paragraph to be a different 
+        font, as well as a bigger size and colour.
+    </p>
+    <button onclick="Toast('#toast')" style="display:block">
+        Toast
+    </button>
+    <div class="toast" id="toast">
+        <p id="content">Toast</p>
+    </div>
+    <div class="window-wrapper">
+        <div class="window">
+            <h2 class="heading">Delete this file?</h2>
+            <p>Are you sure you want to delete this file?</p>
+            <input type="checkbox" name="chx" id="chx"><label for="chx">Don't show this warning again</label>
+            <div class="winEqual">
+                <button class="win">Delete</button>
+                <button class="win">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

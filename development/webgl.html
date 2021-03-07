@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="dns-prefetch" href="//fonts.google.com">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap');
+
+            body,html{margin:0}
+            h1 {
+                font-family: "Source Serif Pro", serif;
+                font-weight: 400;
+                font-size: 35pt;
+                margin: 45px 10px 10px;
+                text-align: center;
+            }
+            canvas {
+                display: table;
+                margin: auto;
+            }
+        </style>
+            <script id="vertex" type="notjs">
+                attribute vec4 a_position;
+                varying vec4 color;
+
+                uniform vec4 a_translation;
+                uniform vec2 a_mouse;
+            
+                void main() {
+                    color = a_position;
+                    
+                    gl_Position = a_position + a_translation;
+                }
+            </script>
+            <script id="fragment" type="notjs">
+                precision mediump float;
+                
+                varying vec4 color;
+    
+                void main() {
+                    vec4 cl = color * 0.8 + 0.5;
+                    gl_FragColor = cl;
+                } 
+            </script>
+
+            <script>
+                function main() {
+                    var canvas = document.querySelector("#gl");
+                    var gl = canvas.getContext("webgl");
+
+                    let side = (innerWidth < innerHeight) ? innerWidth : innerHeight
+
+                    document.querySelector("ver").innerHTML = gl.getParameter(gl.VERSION);
+                    canvas.width = side;
+                    canvas.height = side;
+
+                    var translation = [0, 0, 0, 0];
+                    var rotation = [0, 1]
+
+                    
+                    var vertexShaderSource = document.querySelector("#vertex").text;
+                    var fragmentShaderSource = document.querySelector("#fragment").text;
+
+                    var vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+                    var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+                    var program = createProgram(gl, vertexShader, fragmentShader);
+
+                    var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+                    var positionBuffer = gl.createBuffer();
+
+                    var translationAttributeLocation = gl.getUniformLocation(program, "a_translation");
+
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+                    var positions = [
+                        -0.5, 0.5, // first triangle
+                        0.5, 0.5,
+                        0.5, -0.5,
+
+                        -0.5, -0.5, // second triangle
+                        0.5, -0.5,
+                        -0.5, 0.5
+                    ];
+                    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+
+                    function frame() {
+
+                        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+                        gl.clearColor(0, 0, 0, 0);
+                        gl.clear(gl.COLOR_BUFFER_BIT);
+
+                        gl.useProgram(program);
+
+                        gl.uniform4fv(translationAttributeLocation, translation);
+
+                        gl.enableVertexAttribArray(positionAttributeLocation);
+                        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+                        gl.vertexAttribPointer(
+                        positionAttributeLocation, 2, gl.FLOAT, false, 0, 0)
+
+                        var primitiveType = gl.TRIANGLES;
+                        gl.drawArrays(primitiveType, 0, 6);
+
+                    }
+
+                    function createShader(gl, type, source) {
+                        var shader = gl.createShader(type);
+                        gl.shaderSource(shader, source);
+                        gl.compileShader(shader);
+                        var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+                        if (success) {
+                            return shader;
+                        }
+                        
+                        console.log(gl.getShaderInfoLog(shader));
+                        gl.deleteShader(shader);
+                    }
+
+                    function createProgram(gl, vertexShader, fragmentShader) {
+                        var program = gl.createProgram();
+                        gl.attachShader(program, vertexShader);
+                        gl.attachShader(program, fragmentShader);
+                        gl.linkProgram(program);
+                        var success = gl.getProgramParameter(program, gl.LINK_STATUS);
+
+                        if (success) {return program}
+                        
+                        console.log(gl.getProgramInfoLog(program));
+                        gl.deleteProgram(program);
+                    }
+
+                                        
+                    window.addEventListener("keydown", (event) => {
+                            switch (event.key) {
+                                case "w": translation[1] += 0.005; frame(); break;
+                                case "a": translation[0] -= 0.005; frame(); break;
+                                case "s": translation[1] -= 0.005; frame(); break;
+                                case "d": translation[0] += 0.005; frame(); break;
+                            }
+                    })
+
+                    canvas.onmousemove = (event) => {
+                        var rect = canvas.getBoundingClientRect();
+
+                        translation[0] = (event.screenX - rect.left - side/2)/side*2
+                        translation[1] = 0-(event.screenY - rect.top - 70 - side/2)/side*2
+
+                        frame()
+                    }
+                                            
+                    window.requestAnimationFrame(frame)
+                    frame()
+                }
+
+                window.onload = main
+            </script>
+    </head>
+    <body>
+        <h1>Square rendered using <br><ver>Webgl</ver></h1>
+        <canvas id="gl">Your browser doesn't support the canvas element.</canvas>
+    </body>
+</html>

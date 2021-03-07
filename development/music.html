@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Music</title>
+        <style>
+            body {
+                background: #fff;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #keys {
+                width: 100%;
+                height: 50%;
+            }
+            .in {
+                background: #555;
+                border-radius: 50%;
+                padding: 30px;
+                margin: 5px;
+                display: inline-table;
+            }
+        </style>
+        <script>
+            document.addEventListener('keydown', function(key) {
+                document.body.style.background = "#000";
+                document.body.style.color = "#fff";
+            })
+            document.addEventListener('keyup', function(key) {
+                setTimeout(function (){
+                    document.body.style.background = "#fff";
+                    document.body.style.color = "#000";
+                }, 100)
+            })
+            function keyz() {
+                let keys = document.getElementById("keys");
+                let keyboard = "tab q w e r t y u i o p [ ] \\\ncaps a s d f g h j k l ; ' enter\nshift z x c v b n m , . / shift\nctrl fn win alt space alt options"
+                
+                let keyRows = keyboard.split("\n")
+                
+                for (row in keyRows){
+                    let keyArr = keyRows[row].split(" ")
+
+                    keys.innerHTML += "<div class='krow' id='"+row+"'></div>"
+                        keyArr.forEach(key => {
+                            document.getElementById(row).innerHTML += "<div class='in'></div>"
+                        })
+                        // for (element in keyArr) {
+                        //     if (keyArr[element] == undefined) break
+                        //     document.getElementById(row).innerHTML += "<div class='in'>"+keyArr[element]+"</div>"
+                        // }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>:)</h1>
+        <div id="keys">
+        </div>
+    </body>
+</html>

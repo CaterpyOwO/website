@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Qr Code mask patterns</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{text-align:center}canvas{width:250px;height:250px;border:1px solid #ddd;border-radius:3px}button{display:block;margin:auto}.content{display:flex;width:100%}.right{flex:50%;padding:20px}.left{flex:50%;padding:20px}@media only screen and (max-width:650px){.content{flex-direction:column}}
+        </style>
+        <script>
+            function render(pattern) {
+                let canvas = document.getElementById(`${pattern}`);
+                let c = canvas.getContext("2d");
+
+                canvas.width = 250
+                canvas.height = 250
+
+                for (j = 0; j < 25; j++){
+                    for (i = 0; i < 25; i++){
+                        switch (pattern) {
+                            case 0: if ((i+j)%2==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 1:  if (j%3==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 2:  if (((i*j)%3+i*j)%2==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 3:  if (((i*j)%3+i+j)%2==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 4:  if ((i+j)%3==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 5:  if (i%2==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 6:  if ((Math.floor(i/2)+Math.floor(j/3))%2==0) c.fillRect(j*10, i*10, 10, 10); break;
+                            case 7:  if ((i*j)%2+(i*j)%3==0) c.fillRect(j*10, i*10, 10, 10); break;
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>All Qr code mask patterns</h1>
+        <div class="content">
+            <div class="left">
+                <p>(i+j)%2=0</p>
+                <canvas id="0"></canvas>
+                <button onclick="render(0)">Render mask pattern</button>
+                <p>j%3=0</p>
+                <canvas id="1"></canvas>
+                <button onclick="render(1)">Render mask pattern</button>
+                <p>(i+j)%3=0</p>
+                <canvas id="4"></canvas>
+                <button onclick="render(4)">Render mask pattern</button>
+                <p>i%2=0</p>
+                <canvas id="5"></canvas>
+                <button onclick="render(5)">Render mask pattern</button>
+            </div>
+            <div class="right">
+                <p>((i*j)%3+i*j)%2=0</p>
+                <canvas id="2"></canvas>
+                <button onclick="render(2)">Render mask pattern</button>
+                <p>((i*j) % 3+i+j)%2=0</p>
+                <canvas id="3"></canvas>
+                <button onclick="render(3)">Render mask pattern</button>
+                <p>(i/2+j/3)%2=0</p>
+                <canvas id="6"></canvas>
+                <button onclick="render(6)">Render mask pattern</button>
+                <p>(i*j)%2+(i*j)%3=0</p>
+                <canvas id="7"></canvas>
+                <button onclick="render(7)">Render mask pattern</button>
+            </div>
+        </div>
+    </body>
+</html>

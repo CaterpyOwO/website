@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Qr Code encoding</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{text-align:center}canvas{width:250px;height:250px;border:1px solid #ddd;border-radius:3px}button{display:block;margin:auto}.content{display:flex;width:100%}.right{flex:50%;padding:20px}.left{flex:50%;padding:20px}@media only screen and (max-width:650px){.content{flex-direction:column}}
+        </style>
+        <script>
+            let encoding = (c, mode) => {
+                    this.direction = [
+                        [0,0],
+                        [-1,0],
+                        [0,-1],
+                        [-1,-1]
+                    ]
+                    this.bits = mode.split("");
+
+                    this.bits.forEach((bit, index) => {
+                        if (parseInt(bit) == 1) {
+                            c.fillRect((24+this.direction[index][0])*10, (24+this.direction[index][1])*10, 10, 10);
+                        }
+                    });
+            }
+
+            function render() {
+                let canvas = document.getElementById("canvas");
+                let c = canvas.getContext("2d");
+
+                canvas.width = 250
+                canvas.height = 250
+
+                c.fillStyle = "deeppink"
+                encoding(c, "1111")
+                c.fillStyle = "aqua"
+
+                for (i=0; i < 25; i++) {
+
+                    
+                    for (j=0;j < 25; j++) {
+
+                        c.fillStyle = "rgb(0,"+j*10+","+j*10+")"
+
+                        if (i < 6 && (j > 7 && j < 17)) c.fillRect(j*10, i*10, 10, 10);
+                        else if ( i > 6 && i < 17 && j !== 7) c.fillRect(j*10, i*10, 10, 10);
+                        else if ( i >= 17 && (j > 7 && j < 23)) c.fillRect(j*10, i*10, 10, 10);
+                    }
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <h1>OOp</h1>
+        <p>thing</p>
+        <canvas id="canvas"></canvas>
+        <button onclick="render()">render</button>
+        <!-- <div class="content">
+            <div class="left">
+
+            </div>
+            <div class="right">
+
+            </div>
+        </div> -->
+    </body>
+</html>
